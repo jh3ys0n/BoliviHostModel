@@ -165,7 +165,7 @@ def main():
 
     df = user_input_parameters()
 
-    option = ['regresion logistica']
+    option = ['Arbol de descicione']
 
     model_type = st.sidebar.selectbox('¿Qué modelo te gustaría usar?', option)
 
