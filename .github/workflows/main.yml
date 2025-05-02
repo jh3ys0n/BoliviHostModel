@@ -1,0 +1,19 @@
+name: Test API
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Testear API
+        run: |
+          uvicorn app.main:app --host 0.0.0.0 --port 8000 &
+          sleep 5  # Esperar a que la API inicie
+          curl -X GET http://localhost:8000/ | grep "Hola Mundo"
